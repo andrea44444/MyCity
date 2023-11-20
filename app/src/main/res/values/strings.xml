@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">PruebaMyCity</string>
+    <string name="dParque1">Un oasis verde en el corazón de la ciudad, el Parque Central se extiende
+        a lo largo de amplias áreas verdes, senderos serpenteantes y zonas de descanso sombreadas.
+        Su lago central ofrece la oportunidad de remar en botes o simplemente disfrutar del paisaje
+    </string>
+    <string name="dParque2">Este espacio único celebra la creatividad y la imaginación. Además de
+        una amplia colección de libros, cuenta con talleres de arte, actividades interactivas y
+        eventos especiales que promueven la expresión artística en todas sus formas.
+    </string>
 </resources>

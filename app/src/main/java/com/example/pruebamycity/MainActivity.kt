@@ -31,7 +31,6 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.pruebamycity.data.NavRoutes
 import com.example.pruebamycity.screens.Details_Screen
 
-
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,7 +53,6 @@ class MainActivity : ComponentActivity() {
 fun MainApp() {
     val navController = rememberNavController()
     val currentRoute = navController.currentBackStackEntryAsState().value?.destination?.route
-    println(currentRoute)
     Scaffold(
         topBar = {
             when (currentRoute) {

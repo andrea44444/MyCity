@@ -5,7 +5,6 @@ import com.example.pruebamycity.models.Lugar
 import com.example.pruebamycity.models.NombreLugar
 
 object DataLugar {
-    val defaultItem = getLugares()[0]
     fun getLugares(): List<Lugar> {
         return listOf(
             Lugar(

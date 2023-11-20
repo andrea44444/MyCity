@@ -7,5 +7,5 @@ data class Recomendacion (
     @DrawableRes val image: Int,
     val nombreRecomendacion: String,
     val direccion : String,
-    var descripcion : String
+    var descripcion : Int
 )

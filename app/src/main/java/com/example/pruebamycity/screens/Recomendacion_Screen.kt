@@ -4,10 +4,12 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
@@ -20,7 +22,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.pruebamycity.data.DataRecomendacion
@@ -31,23 +32,15 @@ fun RecomendacionScreen(navController: NavHostController){
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val arguments = navBackStackEntry?.arguments
     val nombreLugar = arguments?.getString("nombreLugar")
-    Column(
+    LazyColumn (
         modifier = Modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        LazyColumn (
-            modifier = Modifier
-                .weight(1f)
-                .padding(start = 16.dp, end = 16.dp),
-        ){
-            items(DataRecomendacion.getRecomendaciones().filter { it.nombreLugar.toString()== nombreLugar }) {
-                Elemento(
-                    navController = navController,
-                    recomendacion = it,
-                    modifier = Modifier.padding(vertical = 20.dp),
-                )
-            }
+        verticalArrangement = Arrangement.spacedBy(8.dp)
+    ){
+        items(DataRecomendacion.getRecomendaciones().filter { it.nombreLugar.toString()== nombreLugar }) {
+            Elemento(
+                navController = navController,
+                recomendacion = it,
+            )
         }
     }
 }
@@ -57,33 +50,34 @@ fun RecomendacionScreen(navController: NavHostController){
 fun Elemento(
     navController: NavHostController,
     recomendacion: Recomendacion,
-    modifier: Modifier = Modifier
 ){
     Card(
-        modifier = modifier,
-        onClick= {navController.navigate("Details_Screen/${recomendacion.nombreRecomendacion}")}
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(150.dp)
+            .padding(horizontal = 16.dp, vertical = 8.dp),
+        onClick = { navController.navigate("Details_Screen/${recomendacion.nombreRecomendacion}") }
     ){
         Row(
-            modifier = modifier
-                .fillMaxWidth()
-                .padding(start = 25.dp),
+            modifier = Modifier.fillMaxSize(),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.Start
         ) {
             Image(
-                modifier = modifier
-                    .size(100.dp)
-                    .padding(end = 9.dp),
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .padding(end = 20.dp),
                 painter = painterResource(recomendacion.image),
-                contentDescription = null
+                contentDescription = recomendacion.nombreRecomendacion
             )
             Column {
                 Text(
                     fontSize = 20.sp,
-                    text= recomendacion.nombreRecomendacion
+                    text = recomendacion.nombreRecomendacion
                 )
+                Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text= recomendacion.direccion
+                    text = recomendacion.direccion
                 )
             }
         }
